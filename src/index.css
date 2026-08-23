@@ -112,6 +112,23 @@ body {
 }
 .ticker-mask:hover .ticker-track { animation-play-state: paused; }
 
+@keyframes panel-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.anim-rise { animation: panel-rise 0.45s cubic-bezier(0.2, 0.6, 0.2, 1) both; }
+
+@keyframes type-pulse {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 1; }
+}
+.anim-typepulse { animation: type-pulse 1.1s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-rise { animation: none !important; }
+  .anim-typepulse { animation: none !important; opacity: 1; }
+}
+
 /* ---------- panel chrome ---------- */
 .panel {
   background: linear-gradient(165deg, rgba(20, 48, 58, 0.5), rgba(8, 18, 23, 0.92));
