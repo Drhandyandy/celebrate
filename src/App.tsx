@@ -12,6 +12,7 @@ import {
 import KeyInspector from "./components/KeyInspector";
 import RecoveryLab from "./components/RecoveryLab";
 import AddressProbe from "./components/AddressProbe";
+import MathBench from "./components/MathBench";
 import {
   IconBolt,
   IconChevron,
@@ -202,12 +203,13 @@ const SAFETY_DONT = [
 /* ------------------------------------------------------------------ */
 /* app                                                                 */
 /* ------------------------------------------------------------------ */
-type TabId = "inspector" | "recovery" | "probe";
+type TabId = "inspector" | "recovery" | "probe" | "bench";
 
 const TABS: { id: TabId; label: string; accent: string }[] = [
   { id: "inspector", label: "01 · key inspector", accent: "#3ee9a6" },
   { id: "recovery", label: "02 · recovery lab", accent: "#ffb454" },
   { id: "probe", label: "03 · address probe", accent: "#4fd8e8" },
+  { id: "bench", label: "04 · curve bench", accent: "#ff6b5e" },
 ];
 
 const DRIFT = [23, 341, 662, 977, 1204, 1518, 1801, 115, 733, 1999, 512, 1450];
@@ -230,6 +232,10 @@ export default function App() {
     "derivation · 100% in-browser",
     "default eth path · m/44'/60'/0'/0/0",
     "12-word seed · only 16 final words pass checksum",
+    "curve bench · 17 claims graded live with BigInt EC",
+    "x([2⁻¹]G) = 166 bits — real measurement, zero information",
+    "audit ρ(d) = o is a tautology · you must already hold d",
+    "8,243 sphere candidates / 2^256 ≈ 7.1×10⁻⁷⁴ · not an attack",
     "never type a live seed into any website",
   ];
 
@@ -372,10 +378,11 @@ export default function App() {
         {/* ================= INSTRUMENTS ================= */}
         <section id="tools" className="border-t border-ink-800/80 bg-ink-900/40">
           <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20">
-            <SectionHead index="01" kicker="Instruments" title="Three tools, one deck">
+            <SectionHead index="01" kicker="Instruments" title="Four tools, one deck">
               <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-fog-400">
                 Pick an instrument. Everything below is computed locally with audited
-                pure-JS cryptography — public nodes are queried only with public addresses.
+                pure-JS cryptography — public nodes are queried only with public addresses,
+                and the curve bench verifies folklore claims with math, not faith.
               </p>
             </SectionHead>
 
@@ -420,6 +427,11 @@ export default function App() {
             {tab === "probe" && (
               <div key="probe" className="anim-rise">
                 <AddressProbe />
+              </div>
+            )}
+            {tab === "bench" && (
+              <div key="bench" className="anim-rise">
+                <MathBench />
               </div>
             )}
           </div>
