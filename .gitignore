@@ -1,1 +1,26 @@
-Nothing should be ignored based on the provided file changes. The only added file is `universal_orbital_test.py`, which is a Python source code file and should not be ignored.
+```gitignore
+# Compiled Python files
+*.pyc
+__pycache__/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+
+# Editors
+.vscode/
+.idea/
+
+# Environment files
+.env
+.env.local
+*.env.*
+```
